@@ -1,0 +1,23 @@
+{
+  "name": "@kim5257app/enhanced-router",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "vue": "^3.2.45",
+    "vuetify": "^3.1.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "eslint": "^8.22.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "pathe": "^1.1.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "vite": "^4.0.0",
+    "vite-plugin-vuetify": "^1.0.2"
+  }
+}
