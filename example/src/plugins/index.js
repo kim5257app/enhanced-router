@@ -17,5 +17,5 @@ export function registerPlugins (app) {
     .use(vuetify)
     .use(pinia)
     .use(router)
-    .use(erouter)
+    .use(erouter, { router })
 }
