@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { makeShowFlag } from '@/../../dist/mixin-dialog-support';
+import { makeShowFlag } from '@/../../dist/enhanced-router';
 
 export default {
   name: 'DlgTest',
