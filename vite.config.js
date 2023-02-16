@@ -1,30 +1,27 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
-import { resolve } from 'pathe';
+import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue'
+
+console.log('resolve:', resolve('src/enhanced_router.js'));
 
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
     lib: {
       entry: {
-        'enhanced-router': resolve(__dirname, 'src/index.js'),
-        'mixin-dialog-support': resolve(__dirname, 'src/mixin_dialog_support.js'),
+        'enhanced-router': resolve('src/enhanced_router.js'),
+        'mixin-dialog-support': resolve('src/mixin_dialog_support.js'),
       },
       name: 'EnhancedRouter',
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: [
-        'vue',
-        'vuetify',
-      ],
+      external: ['vue'],
     },
   },
-  plugins: [
-    vue(),
-  ],
+  plugins: [vue()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

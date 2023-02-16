@@ -1,5 +1,5 @@
 /**
- * plugins/index.js
+ * plugins/enhanced_router.js
  *
  * Automatically included in `./src/main.js`
  */

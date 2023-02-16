@@ -5,28 +5,21 @@
       대화상자 열기
     </v-btn>
     <v-btn
-      to="/about">
-      About
+      to="/">
+      Home
     </v-btn>
-    <v-dialog
-      v-model="showDialog">
-      <v-card>
-        <v-card-title>
-          제목
-        </v-card-title>
-        <v-card-text>
-          내용
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+    <dlg-test v-model:show="showDialog">
+    </dlg-test>
   </v-container>
 </template>
 
 <script>
 import { makeShowFlag } from '../../../dist/mixin-dialog-support';
+import DlgTest from '@/components/DlgTest.vue';
 
 export default {
   name: 'Home',
+  components: {DlgTest},
   computed: {
     showDialog: makeShowFlag('dialog'),
   },

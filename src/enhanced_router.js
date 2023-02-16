@@ -3,11 +3,7 @@ import DialogManager from './DialogManager';
 export default {
   install(app, { router }) {
     app.config.globalProperties.$erouter = {
-      dialogManager: new DialogManager(),
+      dialogManager: new DialogManager({ router }),
     }
-
-    router.beforeEach((to, from) => {
-      console.log('Router beforEach in library', to, from);
-    });
   }
 }
