@@ -19,7 +19,9 @@ import DlgTest from '@/components/DlgTest.vue';
 
 export default {
   name: 'Home',
-  components: {DlgTest},
+  components: {
+    DlgTest,
+  },
   computed: {
     showDialog: makeShowFlag('dialog'),
   },

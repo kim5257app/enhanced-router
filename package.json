@@ -1,7 +1,7 @@
 {
-  "name": "@kim5257app/enhanced-router",
+  "name": "@kim5257/enhanced-router",
   "version": "0.0.0",
-  "private": true,
+  "license": "MIT",
   "type": "module",
   "main": "dist/enhanced-router.js",
   "scripts": {

@@ -1,4 +1,7 @@
 import { reactive } from 'vue';
+import debugModule from 'debug';
+
+const debug = debugModule('enhanced-router:DialogManager');
 
 export default class DialogManager {
   /**
@@ -15,24 +18,24 @@ export default class DialogManager {
 
   setRouterGuard() {
     this.router.beforeEach((to, from, next) => {
-      const history = this.router.options.history;
+      const state = this.router.options.history.state;
 
-      console.log(
-        'Router beforEach in library',
+      debug(
+        'Router beforeEach: prePosition(%s), position(%s), to(%s), from(%s)',
         this.prePosition,
-        history.state.position,
+        state.position,
         to.fullPath,
         from.fullPath,
       );
 
-      const isBack = (this.prePosition > history.state.position);
+      const isBack = (this.prePosition > state.position);
 
       if (isBack) {
         if (this.isEmptyDialog()) {
           next();
         } else {
           this.popDialog();
-          console.log('popDialog');
+          debug(`popDialog: ${this.dlgStack.length}`);
           next(false);
         }
       } else {
@@ -44,8 +47,8 @@ export default class DialogManager {
     this.router.afterEach((to, from, failure) => {
       const history = this.router.options.history;
 
-      console.log(
-        'Router afterEach in library',
+      debug(
+        'Router afterEach - location(%s), back(%s), cur(%s), forward(%s), position(%s)',
         history.location,
         history.state.back,
         history.state.current,
