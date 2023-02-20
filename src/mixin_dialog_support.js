@@ -14,3 +14,5 @@ export function makeShowFlag(name) {
     },
   };
 }
+
+export default {};

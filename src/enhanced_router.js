@@ -2,7 +2,7 @@ import debugModule from 'debug';
 
 import DialogManager from './DialogManager';
 
-const debug = debugModule('enhanced-router');
+const logger = debugModule('enhanced-router');
 
 class EnhancedRouter {
   constructor({ router, debug }) {
@@ -10,19 +10,20 @@ class EnhancedRouter {
 
     if (debug) {
       debugModule.enable('enhanced-router:*');
-
     }
   }
 
   install(app) {
-    debug('Plugin install');
+    logger('Plugin install');
 
     app.config.globalProperties.$erouter = {
       dialogManager: new DialogManager({ router: this.router }),
-    }
+    };
   }
 }
 
 export function createEnhancedRouter(opts) {
   return new EnhancedRouter(opts);
 }
+
+export default {};

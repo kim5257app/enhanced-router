@@ -18,7 +18,7 @@ export default class DialogManager {
 
   setRouterGuard() {
     this.router.beforeEach((to, from, next) => {
-      const state = this.router.options.history.state;
+      const { state } = this.router.options.history;
 
       debug(
         'Router beforeEach: prePosition(%s), position(%s), to(%s), from(%s)',
@@ -45,7 +45,7 @@ export default class DialogManager {
     });
 
     this.router.afterEach((to, from, failure) => {
-      const history = this.router.options.history;
+      const { history } = this.router.options;
 
       debug(
         'Router afterEach - location(%s), back(%s), cur(%s), forward(%s), position(%s)',
@@ -90,12 +90,12 @@ export default class DialogManager {
   }
 
   isEmptyDialog() {
-    return (this.dlgStack.length === 0)
+    return (this.dlgStack.length === 0);
   }
 
   back() {
     let canGoBack = false;
-    const history = this.router.options.history;
+    const { history } = this.router.options;
 
     if (history.state.back != null) {
       this.router.back();
