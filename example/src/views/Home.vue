@@ -30,5 +30,10 @@ export default {
   computed: {
     showDialog: makeShowFlag('dialog'),
   },
+  watch: {
+    showDialog() {
+      console.log('showDialog');
+    },
+  },
 }
 </script>
