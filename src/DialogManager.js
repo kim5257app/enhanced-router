@@ -17,7 +17,7 @@ export default class DialogManager {
   }
 
   setRouterGuard() {
-    this.router.beforeEach((to, from, next) => {
+    this.router.beforeEachEx((to, from, next) => {
       const { state } = this.router.options.history;
 
       debug(
