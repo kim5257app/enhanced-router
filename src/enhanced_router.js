@@ -42,6 +42,11 @@ class EnhancedRouter {
     app.config.globalProperties.$erouter = {
       dialogManager: new DialogManager({ router: this.router }),
     };
+
+    this.router.dlgMgr = app.config.globalProperties.$erouter.dialogManager;
+    this.router.goBack = () => {
+      app.config.globalProperties.$erouter.dialogManager.back();
+    };
   }
 }
 

@@ -11,6 +11,10 @@
           @click="showDialog=true">
           대화상자 B 열기
         </v-btn>
+        <v-btn
+          @click="onCloseDialog">
+          대화상자 A 닫기
+        </v-btn>
       </v-card-text>
     </v-card>
     <v-dialog
@@ -51,6 +55,12 @@ export default {
       set(value) {
         this.$emit('update:show', value);
       },
+    },
+  },
+  methods: {
+    onCloseDialog() {
+      console.log('erouter!!:', this.$router.dlgMgr);
+      this.$router.goBack();
     },
   },
 };
