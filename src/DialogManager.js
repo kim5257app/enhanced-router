@@ -97,8 +97,6 @@ export default class DialogManager {
     let canGoBack = false;
     const { back } = window.history.state;
 
-    console.log('back:', window.history.state, this.router);
-
     if (back != null) {
       this.router.back();
       canGoBack = true;
