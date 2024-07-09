@@ -1,6 +1,14 @@
+let seq = 0;
+
 export function makeShowFlag(name) {
-  const dlgName = (name != null)
-    ? name : this.$erouter.dialogManager.getDialogName();
+  let dlgName;
+
+  if (name != null) {
+    dlgName = name;
+  } else {
+    dlgName = `dlg_${seq}`;
+    seq += 1;
+  }
 
   return {
     get() {

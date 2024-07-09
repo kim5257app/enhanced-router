@@ -63,11 +63,6 @@ export default class DialogManager {
     });
   }
 
-  getDialogName() {
-    this.seq += 1;
-    return `dlg_${this.seq}`;
-  }
-
   showDialog(name) {
     this.dlgInfo.set(name, true);
     this.dlgStack.push(name);
