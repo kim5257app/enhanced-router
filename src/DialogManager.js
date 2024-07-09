@@ -12,6 +12,7 @@ export default class DialogManager {
     this.dlgInfo = reactive(new Map());
     this.router = router;
     this.prePosition = -1;
+    this.seq = 0;
 
     this.setRouterGuard();
   }
@@ -60,6 +61,11 @@ export default class DialogManager {
         this.prePosition = history.state.position;
       }
     });
+  }
+
+  getDialogName() {
+    this.seq += 1;
+    return `dlg_${this.seq}`;
   }
 
   showDialog(name) {
