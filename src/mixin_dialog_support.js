@@ -1,25 +1,17 @@
-let seq = 0;
-
 export function makeShowFlag(name) {
-  let dlgName;
-
-  if (name != null) {
-    dlgName = name;
-  } else {
-    dlgName = `dlg_${seq}`;
-    seq += 1;
-  }
-
   return {
     get() {
-      return this.$erouter.dialogManager.dlgInfo.get(dlgName) != null;
+      const dlgId = `${name}_${this.$.uid}`;
+      return this.$erouter.dialogManager.dlgInfo.get(dlgId) != null;
     },
     set(value) {
-      if (this[name] !== value) {
+      const dlgId = `${name}_${this.$.uid}`;
+
+      if (this[dlgId] !== value) {
         if (value) {
-          this.$erouter.dialogManager.showDialog(dlgName);
+          this.$erouter.dialogManager.showDialog(dlgId);
         } else {
-          this.$erouter.dialogManager.closeDialog(dlgName);
+          this.$erouter.dialogManager.closeDialog(dlgId);
         }
       }
     },

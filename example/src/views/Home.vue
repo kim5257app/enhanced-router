@@ -28,7 +28,7 @@ import { makeShowFlag } from '../../../dist/enhanced-router';
 export default {
   name: 'Home',
   computed: {
-    showDialog: makeShowFlag('dialog'),
+    showDialog: makeShowFlag(),
   },
   watch: {
     showDialog() {
