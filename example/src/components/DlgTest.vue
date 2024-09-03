@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { makeShowFlag } from '@/../../dist/enhanced-router';
+import { makeShowFlag } from 'enhanced-router';
 
 export default {
   name: 'DlgTest',

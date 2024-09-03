@@ -9,13 +9,13 @@ import { loadFonts } from './webfontloader'
 import vuetify from './vuetify'
 import pinia from '../store'
 import router from '../router'
-import { createEnhancedRouter } from '../../../src';
+import EnhancedRouter from 'enhanced-router';
 
 export function registerPlugins (app) {
-  loadFonts()
+  loadFonts().then(() => {});
   app
     .use(vuetify)
     .use(pinia)
     .use(router)
-    .use(createEnhancedRouter({ router, debug: true }))
+    .use(EnhancedRouter, { router, debug: true })
 }

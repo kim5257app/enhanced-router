@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { makeShowFlag } from '../../../dist/enhanced-router';
+import { makeShowFlag } from 'enhanced-router';
 import DlgTest from '@/components/DlgTest.vue';
 import Test from '@/components/Test';
 // import { makeShowFlag2 } from '../../../src/mixin_dialog_support';

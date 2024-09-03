@@ -22,18 +22,13 @@
   </v-container>
 </template>
 
-<script>
-import { makeShowFlag } from '../../../dist/enhanced-router';
+<script setup>
+import { makeShowFlag } from 'enhanced-router';
+import { watch } from 'vue';
 
-export default {
-  name: 'Home',
-  computed: {
-    showDialog: makeShowFlag(),
-  },
-  watch: {
-    showDialog() {
-      console.log('showDialog');
-    },
-  },
-}
+const showDialog = makeShowFlag('show_dialog');
+
+watch(showDialog, (value) => {
+  console.log('value:', value);
+});
 </script>

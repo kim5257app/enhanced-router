@@ -1,27 +1,27 @@
-import { reactive } from 'vue';
 import debugModule from 'debug';
+import type { Router } from 'vue-router';
+import { ref } from 'vue';
 
-const debug = debugModule('enhanced-router:DialogManager');
+const logger = debugModule('enhanced-router:DialogManager');
 
-export default class DialogManager {
-  /**
-   * @param router - Router
-   */
-  constructor({ router }) {
-    this.dlgStack = [];
-    this.dlgInfo = reactive(new Map());
+class DialogManager {
+  private readonly router: Router;
+
+  private dlgStack: any[] = [];
+  private dlgInfo = ref(new Map<string, boolean>());
+  private prePosition = -1;
+
+  constructor(router: Router) {
     this.router = router;
-    this.prePosition = -1;
-    this.seq = 0;
 
     this.setRouterGuard();
   }
 
-  setRouterGuard() {
-    this.router.beforeEachEx((to, from, next) => {
+  private setRouterGuard() {
+    this.router.beforeEach((to, from, next) => {
       const { state } = this.router.options.history;
 
-      debug(
+      logger(
         'Router beforeEach: prePosition(%s), position(%s), to(%s), from(%s)',
         this.prePosition,
         state.position,
@@ -29,7 +29,7 @@ export default class DialogManager {
         from.fullPath,
       );
 
-      const isBack = (this.prePosition > state.position);
+      const isBack = (this.prePosition > (state.position as number));
 
       if (isBack) {
         if (this.isEmptyDialog()) {
@@ -37,6 +37,7 @@ export default class DialogManager {
         } else {
           this.popDialog();
           debug(`popDialog: ${this.dlgStack.length}`);
+
           next(false);
         }
       } else {
@@ -48,7 +49,7 @@ export default class DialogManager {
     this.router.afterEach((to, from, failure) => {
       const { history } = this.router.options;
 
-      debug(
+      logger(
         'Router afterEach - location(%s), back(%s), cur(%s), forward(%s), position(%s)',
         history.location,
         history.state.back,
@@ -58,45 +59,52 @@ export default class DialogManager {
       );
 
       if (failure == null) {
-        this.prePosition = history.state.position;
+        this.prePosition = (history.state.position as number);
       }
     });
   }
 
-  showDialog(name) {
-    this.dlgInfo.set(name, true);
+  showDialog(name: string) {
+    this.dlgInfo.value.set(name, true);
     this.dlgStack.push(name);
   }
 
-  closeDialog(name) {
+  closeDialog(name: string) {
     const idx = this.dlgStack.findIndex((item) => (item === name));
 
     if (idx >= 0) {
       this.dlgStack.splice(idx, 1);
-      this.dlgInfo.delete(name);
+      this.dlgInfo.value.delete(name);
     }
   }
 
-  popDialog() {
+  private popDialog() {
     const item = this.dlgStack.pop();
 
     if (item != null) {
-      this.dlgInfo.delete(item);
+      this.dlgInfo.value.delete(item);
     }
   }
 
-  cleanupDialog() {
+  private cleanupDialog() {
     this.dlgStack = [];
-    this.dlgInfo.clear();
+    this.dlgInfo.value.clear();
   }
 
-  isEmptyDialog() {
+  private isEmptyDialog() {
     return (this.dlgStack.length === 0);
+  }
+
+  isExist(name: string) {
+    return (this.dlgInfo.value.get(name) != null);
   }
 
   back() {
     let canGoBack = false;
+
     const { back } = window.history.state;
+
+    logger('back:', back);
 
     if (back != null) {
       this.router.back();
@@ -109,3 +117,9 @@ export default class DialogManager {
     return canGoBack;
   }
 }
+
+export {
+  DialogManager
+};
+
+export default DialogManager;
