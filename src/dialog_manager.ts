@@ -36,7 +36,7 @@ class DialogManager {
           next();
         } else {
           this.popDialog();
-          debug(`popDialog: ${this.dlgStack.length}`);
+          logger(`popDialog: ${this.dlgStack.length}`);
 
           next(false);
         }
