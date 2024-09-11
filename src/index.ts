@@ -32,7 +32,7 @@ class EnhancedRouter {
     this.router = options.router;
     this.dialogManager = new DialogManager(this.router);
 
-    this.router.goBack = this.dialogManager.back.bind(this);
+    this.router.goBack = this.dialogManager.back.bind(this.dialogManager);
     this.router.dialogManager = this.dialogManager;
   }
 

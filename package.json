@@ -1,6 +1,6 @@
 {
   "name": "@kim5257/enhanced-router",
-  "version": "2.0.0-next",
+  "version": "2.0.1-next",
   "license": "MIT",
   "type": "module",
   "main": "dist/enhanced-router.js",
