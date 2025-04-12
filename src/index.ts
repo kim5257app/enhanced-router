@@ -50,7 +50,7 @@ export function makeShowFlag(name: string) {
     : makeShowFlagOptions(name);
 }
 
-function makeShowFlagOptions(name: string) {
+export function makeShowFlagOptions(name: string) {
   return {
     get(this: ComponentPublicInstance) {
       const dialogId = `${name}_${this.$.uid}`;
@@ -68,7 +68,7 @@ function makeShowFlagOptions(name: string) {
   };
 }
 
-function makeShowFlagComposition(name: string) {
+export function makeShowFlagComposition(name: string) {
   const inst = getCurrentInstance()!;
   const enhancedRouter = inject<EnhancedRouter>('$enhancedRouter');
 
